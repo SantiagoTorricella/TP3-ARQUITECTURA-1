@@ -370,17 +370,17 @@ addnode:
 	sw $ra, 8($sp)
 	sw $a0, 4($sp)
 	jal smalloc
-	sw $a1, 4($v0) # set node content
+	sw $a1, 4($v0) # seteo contenido nodo
 	sw $a2, 8($v0)
 	lw $a0, 4($sp)
-	lw $t0, ($a0) # first node address
+	lw $t0, ($a0) # direccion primer nodo
 	beqz $t0, addnode_empty_list
 addnode_to_end:
 	lw $t1, ($t0) # last node address
- 	# update prev and next pointers of new node
+ 	# updateo prev y next punteros de un nuveo nodo
 	sw $t1, 0($v0)
 	sw $t0, 12($v0)
-	# update prev and first node to new node
+	# updateo prev y next nodos a un nuevo nodo
 	sw $v0, 12($t1)
 	sw $v0, 0($t0)
 	j addnode_exit
